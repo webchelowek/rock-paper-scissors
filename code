@@ -19,12 +19,6 @@ public class Main {
             System.exit(0);
         }
 
-        int userMove = Main.showMenu(args);
-
-        if (userMove == 0){
-            System.exit(0);
-        }
-
         Key key;
         SecureRandom rand = new SecureRandom();
         KeyGenerator generator = KeyGenerator.getInstance("AES");
@@ -36,6 +30,12 @@ public class Main {
 
         System.out.println("HMAC: " + HMAC.hmacDigest(Integer.toString(compMove), key16, "HmacSHA1").toUpperCase());
 
+        int userMove = Main.showMenu(args);
+
+        if (userMove == 0){
+            System.exit(0);
+        }
+        
         System.out.println ("You move:" + args[userMove-1]);
         userMove--;
 
