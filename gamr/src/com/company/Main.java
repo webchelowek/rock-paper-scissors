@@ -19,8 +19,6 @@ public class Main {
             System.exit(0);
         }
 
-        int userMove = Main.showMenu(args);
-
         Key key;
         SecureRandom rand = new SecureRandom();
         KeyGenerator generator = KeyGenerator.getInstance("AES");
@@ -32,13 +30,18 @@ public class Main {
 
         System.out.println("HMAC: " + HMAC.hmacDigest(Integer.toString(compMove), key16, "HmacSHA1").toUpperCase());
 
+        int userMove = Main.showMenu(args);
+
+        if (userMove == 0){
+            System.exit(0);
+        }
+
         System.out.println ("You move:" + args[userMove-1]);
         userMove--;
 
         if(userMove<compMove){
             result(userMove,compMove,args,"win","lose");
         }
-
         else if(userMove>compMove){
             result(compMove,userMove,args,"lose","win");
         }
@@ -52,7 +55,6 @@ public class Main {
             int distance = move2-move1;
             double length = args.length;
             double len = length/2;
-            System.out.println(len);
             if(distance < len){
                 System.out.println("you " + lose + "!");
             }
